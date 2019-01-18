@@ -1,9 +1,17 @@
 package com.example.Notification_App_HW_Fabian_Kelveen;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.graphics.Color;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.Notification_App_HW_Fabian_Kelveen.controller.DbListAdapter;
 import com.example.Notification_App_HW_Fabian_Kelveen.model.DBCharacterCreator;
@@ -18,6 +26,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
+    private static final String PRIMARY_CHANNEL_ID = "primary_notification_channel";
+    public static NotificationManager mNotifyManager;
+    private static final int NOTIFICATION_ID = 0;
+    private static final String ACTION_UPDATE_NOTIFICATION =
+            "com.example.android.notifyme.ACTION_UPDATE_NOTIFICATION";
 
     public static List<DBCharacterCreator> characterList = new ArrayList<>();
 
@@ -27,8 +40,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = findViewById(R.id.recyclerView);
         jsonDbCreator();
+        createNotificationChannel();
         //Log.d("SIZE", "Size: " + characterList.size());
         setRecyclerView();
+
     }
 
     public void jsonDbCreator(){
@@ -55,6 +70,21 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
+    public void createNotificationChannel() {
+        mNotifyManager = (NotificationManager)
+                getSystemService(NOTIFICATION_SERVICE);
+        NotificationChannel notificationChannel = new NotificationChannel(PRIMARY_CHANNEL_ID,
+                "Mascot Notification", NotificationManager
+                .IMPORTANCE_HIGH);
+        notificationChannel.enableLights(true);
+        notificationChannel.setLightColor(Color.RED);
+        notificationChannel.enableVibration(true);
+        notificationChannel.setDescription("Notification from Mascot");
+        mNotifyManager.createNotificationChannel(notificationChannel);
+    }
+
+
 }
 /*FIXME:
 1. Implement a Cardview for your list.

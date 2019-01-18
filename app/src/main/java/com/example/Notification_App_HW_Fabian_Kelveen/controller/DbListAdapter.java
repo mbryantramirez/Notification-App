@@ -1,18 +1,26 @@
 package com.example.Notification_App_HW_Fabian_Kelveen.controller;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import com.example.Notification_App_HW_Fabian_Kelveen.DisplayContent;
+import com.example.Notification_App_HW_Fabian_Kelveen.MainActivity;
 import com.example.Notification_App_HW_Fabian_Kelveen.R;
 import com.example.Notification_App_HW_Fabian_Kelveen.model.DBCharacterCreator;
 import com.example.Notification_App_HW_Fabian_Kelveen.view.DbListViewHolder;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -36,6 +44,7 @@ public class DbListAdapter extends RecyclerView.Adapter<DbListViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull DbListViewHolder holder, final int i) {
         String characterNames = characterList.get(i).getCharacterName();
+
         holder.characterListView.setText(characterNames);
         holder.characterListView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,9 +54,9 @@ public class DbListAdapter extends RecyclerView.Adapter<DbListViewHolder> {
                 intent.putExtra("charImg", characterList.get(i).getCharacterImage());
                 characterList.clear();
                 v.getContext().startActivity(intent);
-
             }
         });
+
     }
 
     @Override
@@ -55,4 +64,7 @@ public class DbListAdapter extends RecyclerView.Adapter<DbListViewHolder> {
         Log.d("SIZE","getItemCount Size: " + characterList.size());
         return characterList.size();
     }
+
+
+
 }

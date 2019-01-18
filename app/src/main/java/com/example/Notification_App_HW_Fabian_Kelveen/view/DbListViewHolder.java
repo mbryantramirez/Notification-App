@@ -2,6 +2,7 @@ package com.example.Notification_App_HW_Fabian_Kelveen.view;
 
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ public class DbListViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
         characterListView = itemView.findViewById(R.id.characterlist);
         this.adapter = adapter;
+
     }
 
 

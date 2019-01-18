@@ -15,9 +15,10 @@
         android:textAlignment="center"
         android:textSize="@dimen/display_content_textsz"
         android:textStyle="bold"
+        android:textColor="#F8F6F6"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Hello World"
-        tools:textColor="#000"
+        tools:textColor="#080000"
         tools:textSize="34sp" />
 
     <ImageView
